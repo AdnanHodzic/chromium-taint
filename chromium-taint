@@ -4,7 +4,7 @@ pdf(){
 # PDF Viewer installation
 
 # check if libpdf.so already exists
-if [ -f $PDF ]
+if [ ! -f $FDEST ]
 then
 	echo -e "-------------------------------------\n"
 	echo -e "Chrome PDF Viewer: already installed.\n"
@@ -39,6 +39,7 @@ ARCH="$(uname -m)"
 TDIR="/tmp/chromium-taint/"
 CDIR="/usr/lib/chromium-browser"
 PDF="/tmp/chromium-taint/opt/google/chrome/libpdf.so"
+FDEST="/usr/lib/chromium-browser/libpdf.so"
 
 URL32="https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb"
 URL64="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" 
