@@ -141,12 +141,49 @@ fi
 fi
 }
 
+# fix font rendering (add anti-aliasing)
+font(){
+FCONF="~/.fonts.conf"
+FCONFBAK="~/.fonts.conf.backup"
+
+if [ ! -f $FCONF ]
+then
+    echo -e "-------------------------------------\n"
+    echo -e "File .fonts.conf alreay exists \n"
+    echo -e "Make backup, and overwrite? \n"
+    read -p "[Y]es, [N]o: " fconfreplace
+
+for letter in "$fconfreplace"; do
+
+if [[ "$letter" == [Yy] ]];
+then
+    cp $FCONF $FCONFBAK
+    echo -e "\nBackup stored: $FCONFBAK\n"
+    continue
+
+elif [[ "$letter" == [Nn]* ]];
+then
+    echo -e "Skipped ...\n"
+    exit
+
+else
+    echo -e "\n--------------------------------\n"
+    echo -e "Non existing value: exiting ..."
+    echo -e "\n--------------------------------\n"
+    exit 1
+fi
+
+done
+fi
+}
+
 echo -e "\n------------------ Chromium-taint ------------------\n"
 read -p "Choose what to install ...
  
 [C]hrome PDF Viewer
 [P]epper Flash Player (only Ubuntu >= 14.04/Debian >= Jessie)
 [B]oth \"Pepper Flash Player\" and \"Chrome PDF Viewer\"
+[F]ix font rendering (add Anti-aliasing)
 [A]bout \"Chromium-taint\"
 [E]xit
 :" action
@@ -169,6 +206,10 @@ elif [[ "$letter" == [Bb]* ]]; then
 
 	pdf
 	pepper
+
+elif [[ "$letter" == [Ff]* ]]; then
+	
+	font
 
 elif [[ "$letter" == [Ee]* ]]; then
 
