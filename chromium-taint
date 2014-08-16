@@ -36,10 +36,14 @@ fi
 # pdf variables
 ARCH="$(uname -m)"
 
+# add debian/checker, because
+# ubuntu = ../chromium-taint/
+# debian = ../chromium/
 TDIR="/tmp/chromium-taint/"
-CDIR="/usr/lib/chromium-browser"
+CDIR="/usr/lib/chromium"
 PDF="/tmp/chromium-taint/opt/google/chrome/libpdf.so"
-FDEST="/usr/lib/chromium-browser/libpdf.so"
+FDEST="/usr/lib/chromium/libpdf.so"
+
 
 URL32="https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb"
 URL64="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" 
@@ -62,8 +66,9 @@ then
 	sudo cp $PDF $CDIR
 	rm -rf $TDIR
 
-	echo -e "-----------------------------\n"
+	echo -e "-------------------------------------\n"
 	echo -e "Chrome PDF Viewer: installed.\n"
+	call	
 
 elif [ $ARCH == i686 ] || [ $ARCH == i386 ];
 then
@@ -73,8 +78,9 @@ then
 	sudo cp $PDF $CDIR
 	rm -rf $TDIR
 
-	echo -e "-----------------------------\n"
+	echo -e "-------------------------------------\n"
 	echo -e "Chrome PDF Viewer: installed.\n"
+	call
 
 else
 	echo -e "-----------------------------------\n"
@@ -103,6 +109,8 @@ sudo apt-get -y install pepperflashplugin-nonfree
 
 echo -e "-------------------------------\n"
 echo -e "Pepper Flash Player: installed.\n"
+call
+
 }
 
 # check if Adobe Flash Plugin is installed
@@ -177,6 +185,7 @@ done
 fi
 }
 
+menu(){
 echo -e "\n------------------ Chromium-taint ------------------\n"
 read -p "Choose what to install ...
  
@@ -230,6 +239,36 @@ fi
 	echo    "------------------------------\n"
 	# exit?
 done
+}
 
-echo -e "Run \"chromium-taint\" to see this again"
-echo -e "\n--------------------------------------"
+# menu call
+call(){
+
+echo -e "-------------------------------------\n"
+echo -e "\nInstall more stuff?\n"
+read -p "[Y]es, [N]o: " callresponse
+
+for letter in "$callresponse"; do
+
+if [[ "$letter" == [Yy] ]];
+then
+	menu
+	continue
+
+elif [[ "$letter" == [Nn]* ]];
+then
+	echo -e "\n-------------------------------\n"
+	echo    "Ciao!"
+	echo -e "\n-------------------------------\n"
+	exit
+else
+    echo -e "\n--------------------------------\n"
+    echo -e "Non existing value: exiting ..."
+    echo -e "\n--------------------------------\n"
+    exit 1
+fi
+
+done
+}
+
+menu
