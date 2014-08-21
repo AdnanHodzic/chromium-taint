@@ -189,8 +189,7 @@ echo -e "\n------------------ Chromium-taint ------------------\n"
 read -p "Choose what to install ...
  
 [C]hrome PDF Viewer
-[P]epper Flash Player (only Ubuntu >= 14.04/Debian >= Jessie)
-[B]oth \"Pepper Flash Player\" and \"Chrome PDF Viewer\"
+[P]epper Flash Player
 [F]ix font rendering (add Anti-aliasing)
 [A]bout \"Chromium-taint\"
 [E]xit
@@ -209,11 +208,6 @@ elif [[ "$letter" == [Pp]* ]]; then
 	# and ask if you want to remove it
 	pepper
 	break
-
-elif [[ "$letter" == [Bb]* ]]; then
-
-	pdf
-	pepper
 
 elif [[ "$letter" == [Ff]* ]]; then
 	
