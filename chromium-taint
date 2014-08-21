@@ -40,10 +40,9 @@ ARCH="$(uname -m)"
 # ubuntu = ../chromium-taint/
 # debian = ../chromium/
 TDIR="/tmp/chromium-taint/"
-CDIR="/usr/lib/chromium"
+CDIR="/usr/lib/chromium-browser"
 PDF="/tmp/chromium-taint/opt/google/chrome/libpdf.so"
-FDEST="/usr/lib/chromium/libpdf.so"
-
+FDEST="/usr/lib/chromium-browser/libpdf.so"
 
 URL32="https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb"
 URL64="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" 
