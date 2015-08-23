@@ -154,7 +154,7 @@ username=$(whoami)
 NEWFCONF="<?xml version=\"1.0\"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
- <match target=\"font\" >
+ <match target=\"font\" >s
   <edit mode=\"assign\" name=\"rgba\" >
    <const>none</const>
   </edit>
@@ -197,7 +197,7 @@ then
     cp $FCONF $FCONFBAK
     echo -e "\nBackup stored: $FCONFBAK\n"
 	#read -p "Specify your username: " username
-	echo $NEWFCONF > /home/$username/.fonts.conf
+	echo "$NEWFCONF" > /home/$username/.fonts.conf
 	echo -e "\nFont fixed\n"
 	call
 
@@ -221,7 +221,7 @@ done
 fi
 
 # font fix
-echo $NEWFCONF > /home/$username/.fonts.conf
+echo "$NEWFCONF" > /home/$username/.fonts.conf
 echo -e "\nFont fixed\n"
 continue
 call
