@@ -183,7 +183,7 @@ NEWFCONF="<?xml version=\"1.0\"?>
 FCONF="/home/$username/.fonts.conf"
 FCONFBAK="/home/$username/.fonts.conf.backup"
 
-if [ ! -f $FCONF ]
+if [ -f $FCONF ]
 then
     echo -e "-------------------------------------\n"
     echo -e "File .fonts.conf alreay exists \n"
@@ -196,10 +196,9 @@ if [[ "$letter" == [Yy] ]];
 then
     cp $FCONF $FCONFBAK
     echo -e "\nBackup stored: $FCONFBAK\n"
-    continue
 	#read -p "Specify your username: " username
 	echo $NEWFCONF > /home/$username/.fonts.conf
-	echo "\nFont fixed\n"
+	echo -e "\nFont fixed\n"
 	call
 
 elif [[ "$letter" == [Nn]* ]];
