@@ -198,14 +198,13 @@ then
     echo -e "\nBackup stored: $FCONFBAK\n"
 	#read -p "Specify your username: " username
 	echo "$NEWFCONF" > /home/$username/.fonts.conf
-	echo -e "\nFont fixed\n"
+	echo -e "\nFont rendering (add Anti-aliasing) fixed\n"
 	call
 
 elif [[ "$letter" == [Nn]* ]];
 then
     echo -e "Skipped ...\n"
 	call
-    exit
 
 # todo
 # add option to remove font fix
@@ -222,8 +221,7 @@ fi
 
 # font fix
 echo "$NEWFCONF" > /home/$username/.fonts.conf
-echo -e "\nFont fixed\n"
-continue
+echo -e "\nFont rendering (add Anti-aliasing) fixed\n"
 call
 }
 
