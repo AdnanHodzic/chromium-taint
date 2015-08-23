@@ -207,15 +207,24 @@ then
 	call
     exit
 
+# todo
+# add option to remove font fix
+
 else
     echo -e "\n--------------------------------\n"
     echo -e "Non existing value: exiting ..."
     echo -e "\n--------------------------------\n"
     exit 1
 fi
-
 done
+
 fi
+
+# font fix
+echo $NEWFCONF > /home/$username/.fonts.conf
+echo -e "\nFont fixed\n"
+continue
+call
 }
 
 menu(){
