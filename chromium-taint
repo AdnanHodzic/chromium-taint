@@ -196,7 +196,8 @@ then
     cp $FCONF $FCONFBAK
     echo -e "\nBackup stored: $FCONFBAK\n"
     continue
-	read -p "Specify your username: " username
+	username = $(whoami)
+	#read -p "Specify your username: " username
 	echo $NEWFCONF > /home/$username/.fonts.conf
 	echo "\nFont fixed\n"
 	call
@@ -204,6 +205,7 @@ then
 elif [[ "$letter" == [Nn]* ]];
 then
     echo -e "Skipped ...\n"
+	call
     exit
 
 else
