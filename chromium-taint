@@ -150,6 +150,35 @@ fi
 
 # fix font rendering (add anti-aliasing)
 font(){
+NEWFCONF="<?xml version=\"1.0\"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+ <match target=\"font\" >
+  <edit mode=\"assign\" name=\"rgba\" >
+   <const>none</const>
+  </edit>
+ </match>
+ <match target=\"font\" >
+  <edit mode=\"assign\" name=\"hinting\" >
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target=\"font\" >
+  <edit mode=\"assign\" name=\"hintstyle\" >
+   <const>hintslight</const>
+  </edit>
+ </match>
+ <match target=\"font\" >
+  <edit mode=\"assign\" name=\"antialias\" >
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target=\"font\">
+  <edit name=\"autohint\" mode=\"assign\">
+   <bool>true</bool>
+  </edit>
+ </match>
+</fontconfig>"
 FCONF="~/.fonts.conf"
 FCONFBAK="~/.fonts.conf.backup"
 
@@ -167,6 +196,10 @@ then
     cp $FCONF $FCONFBAK
     echo -e "\nBackup stored: $FCONFBAK\n"
     continue
+	read -p "Specify your username: " username
+	echo $NEWFCONF > /home/$username/.fonts.conf
+	echo "\nFont fixed\n"
+	call
 
 elif [[ "$letter" == [Nn]* ]];
 then
