@@ -150,6 +150,7 @@ fi
 
 # fix font rendering (add anti-aliasing)
 font(){
+username=$(whoami)
 NEWFCONF="<?xml version=\"1.0\"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -179,8 +180,8 @@ NEWFCONF="<?xml version=\"1.0\"?>
   </edit>
  </match>
 </fontconfig>"
-FCONF="~/.fonts.conf"
-FCONFBAK="~/.fonts.conf.backup"
+FCONF="/home/$username/.fonts.conf"
+FCONFBAK="/home/$username/.fonts.conf.backup"
 
 if [ ! -f $FCONF ]
 then
@@ -196,7 +197,6 @@ then
     cp $FCONF $FCONFBAK
     echo -e "\nBackup stored: $FCONFBAK\n"
     continue
-	username = $(whoami)
 	#read -p "Specify your username: " username
 	echo $NEWFCONF > /home/$username/.fonts.conf
 	echo "\nFont fixed\n"
